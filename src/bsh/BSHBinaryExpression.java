@@ -49,6 +49,10 @@ class BSHBinaryExpression extends SimpleNode
     public Object eval( CallStack callstack, Interpreter interpreter)  
 		throws EvalError
     {
+    	/* --- BAJ Implement cancel method --- */
+    	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+    	/* --- BAJ End cancel method --- */
+
         Object lhs = ((SimpleNode)jjtGetChild(0)).eval(callstack, interpreter);
 
 		/*

@@ -68,6 +68,10 @@ class BSHMethodInvocation extends SimpleNode
 		Name name = nameNode.getName(namespace);
 		Object[] args = getArgsNode().getArguments(callstack, interpreter);
 
+    	/* --- BAJ Implement cancel method --- */
+    	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+    	/* --- BAJ End cancel method --- */
+
 // This try/catch block is replicated is BSHPrimarySuffix... need to
 // factor out common functionality...
 // Move to Reflect?

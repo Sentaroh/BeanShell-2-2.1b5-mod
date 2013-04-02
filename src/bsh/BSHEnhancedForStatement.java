@@ -59,6 +59,10 @@ class BSHEnhancedForStatement extends SimpleNode implements ParserConstants
 		Object returnControl = Primitive.VOID;
         while( iterator.hasNext() )
         {
+        	/* --- BAJ Implement cancel method --- */
+        	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+        	/* --- BAJ End cancel method --- */
+
 			try {
 				Object value = iterator.next();
 				if ( value == null )

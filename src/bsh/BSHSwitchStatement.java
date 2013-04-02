@@ -65,6 +65,10 @@ class BSHSwitchStatement
 		// while more labels or blocks and haven't hit return control
 		while ( child < numchild && returnControl == null ) 
 		{
+        	/* --- BAJ Implement cancel method --- */
+        	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+        	/* --- BAJ End cancel method --- */
+
 			// if label is default or equals switchVal
 			if ( label.isDefault 
 				|| primitiveEquals( 

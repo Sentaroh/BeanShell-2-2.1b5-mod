@@ -95,6 +95,10 @@ class BSHForStatement extends SimpleNode implements ParserConstants
 		Object returnControl = Primitive.VOID;
         while(true)
         {
+        	/* --- BAJ Implement cancel method --- */
+        	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+        	/* --- BAJ End cancel method --- */
+
             if ( hasExpression ) 
 			{
 				boolean cond = BSHIfStatement.evaluateCondition(

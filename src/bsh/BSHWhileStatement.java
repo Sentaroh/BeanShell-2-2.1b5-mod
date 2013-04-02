@@ -76,6 +76,11 @@ class BSHWhileStatement extends SimpleNode implements ParserConstants {
 				continue;
 			}
 			Object ret = body.eval(callstack, interpreter);
+			
+        	/* --- BAJ Implement cancel method --- */
+        	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+        	/* --- BAJ End cancel method --- */
+
 			if (ret instanceof ReturnControl) {
 				switch(( (ReturnControl)ret).kind ) {
 					case RETURN:

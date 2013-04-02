@@ -43,6 +43,10 @@ class BSHIfStatement extends SimpleNode
     {
         Object ret = null;
 
+    	/* --- BAJ Implement cancel method --- */
+    	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+    	/* --- BAJ End cancel method --- */
+
         if( evaluateCondition( 
 			(SimpleNode)jjtGetChild(0), callstack, interpreter ) )
             ret = ((SimpleNode)jjtGetChild(1)).eval(callstack, interpreter);

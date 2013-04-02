@@ -162,6 +162,17 @@ public class Interpreter
 
 	/* --- End instance data --- */
 
+	/* --- BAJ Implement cancel method --- */
+	boolean cancelRequested=false;
+	Interpreter localInterpreter=null;
+	
+	public void cancel() {
+		cancelRequested=true;
+		if (localInterpreter!=null) localInterpreter.cancel();
+	}
+	
+	/* --- BAJ End cancel method --- */
+
 	/**
 		The main constructor.
 		All constructors should now pass through here.

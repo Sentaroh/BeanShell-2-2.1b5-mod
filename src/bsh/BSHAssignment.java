@@ -79,6 +79,10 @@ class BSHAssignment extends SimpleNode implements ParserConstants
         if ( rhs == Primitive.VOID )
             throw new EvalError("Void assignment.", this, callstack );
 
+    	/* --- BAJ Implement cancel method --- */
+    	if (interpreter.cancelRequested) throw new EvalError("CancelExcetion", this, callstack);
+    	/* --- BAJ End cancel method --- */
+
 		try {
 			switch(operator)
 			{
